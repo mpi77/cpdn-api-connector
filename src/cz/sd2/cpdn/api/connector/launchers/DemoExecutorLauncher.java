@@ -17,10 +17,10 @@ import cz.sd2.cpdn.api.connector.resources.Task;
 import cz.sd2.cpdn.api.connector.utils.Connection;
 
 public class DemoExecutorLauncher {
-	public static final String CLIENT_ID = "javaExecutorV1";
-	public static final String USER_NAME = "javaexecutor";
-	public static final String USER_PASSWORD = "Lx998hbdWa";
-	public static final String JAVA_EXECUTOR_ID = "javaExecDC1";
+	public static final String CLIENT_ID = "xxx";
+	public static final String USER_NAME = "xxx";
+	public static final String USER_PASSWORD = "xxx";
+	public static final String JAVA_EXECUTOR_ID = "xxx";
 
 	public static void main(String[] args) {
 		try {

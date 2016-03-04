@@ -21,9 +21,9 @@ import cz.sd2.cpdn.api.connector.resources.Section;
 import cz.sd2.cpdn.api.connector.utils.Connection;
 
 public class DemoImporterLauncher {
-	public static final String CLIENT_ID = "javaImporterV1";
-	public static final String USER_NAME = "javaimporter";
-	public static final String USER_PASSWORD = "XhQ912Ts776A";
+	public static final String CLIENT_ID = "xxx";
+	public static final String USER_NAME = "xxx";
+	public static final String USER_PASSWORD = "xxx";
 	public static final int JAVA_IMPORTER_PROFILE = 2;
 
 	public static void main(String[] args) {
