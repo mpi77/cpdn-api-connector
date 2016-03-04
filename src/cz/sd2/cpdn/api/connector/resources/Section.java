@@ -137,6 +137,7 @@ public class Section {
 	public JSONObject getJsonSpecBody() throws NullPointerException {
 		JSONObject spec = new JSONObject();
 		spec.put("type", this.spec.get("type"));
+		spec.put("label", (this.spec.get("label") != null) ? this.spec.get("label") : JSONObject.NULL);
 		spec.put("conductance", (this.spec.get("conductance") != null) ? this.spec.get("conductance") : JSONObject.NULL);
 		spec.put("status", (this.spec.get("status") != null) ? this.spec.get("status") : JSONObject.NULL);
 		spec.put("susceptance", (this.spec.get("susceptance") != null) ? this.spec.get("susceptance") : JSONObject.NULL);
@@ -269,6 +270,7 @@ public class Section {
 		
 		Map<String, Object> spec = Section.buildSpecMap(
 				specJs.getString("type"),
+				(specJs.isNull("label") == false) ? specJs.getString("label") : null, 
 				(specJs.isNull("conductance") == false) ? specJs.getDouble("conductance") : null, 
 				(specJs.isNull("status") == false) ? specJs.getString("status") : null, 
 				(specJs.isNull("susceptance") == false) ? specJs.getDouble("susceptance") : null, 
@@ -335,7 +337,7 @@ public class Section {
 		return nodes;
 	}
 	
-	public static Map<String, Object> buildSpecMap(String type, Double conductance, String status, 
+	public static Map<String, Object> buildSpecMap(String type, String label, Double conductance, String status, 
 			Double susceptance, Double currentMax, Double currentNoLoad, Double reactanceRatio, Double reactanceValue, Double resistanceRatio, 
 			Double resistanceValue, Double lossesNoLoad, Double lossesShortAb, Double lossesShortAc, 
 			Double lossesShortBc, Double powerRatedAb, Double powerRatedAc, Double powerRatedBc, 
@@ -347,6 +349,7 @@ public class Section {
 		}
 		Map<String, Object> spec = new HashMap<String, Object>();
 		spec.put("type", type);
+		spec.put("label", label);
 		spec.put("conductance", conductance);
 		spec.put("status", status);
 		spec.put("susceptance", susceptance);
@@ -397,7 +400,7 @@ public class Section {
 			System.out.println(Section.buildSection(EntityUtils.toString(Section.get(1).getEntity())).toString());
 
 			Map<String, Double> calc = Section.buildCalcMap(.0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
-			Map<String, Object> spec = Section.buildSpecMap(Section.TYPE_LINE, null, Section.STATUS_UNDEFINED, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
+			Map<String, Object> spec = Section.buildSpecMap(Section.TYPE_LINE, "label", null, Section.STATUS_UNDEFINED, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
 			Map<String, Integer> nodes = Section.buildNodesMap(1, 1, 1);
 			
 			Section section = new Section(1, 1, calc, nodes, spec);

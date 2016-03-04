@@ -21,10 +21,10 @@ import cz.sd2.cpdn.api.connector.resources.Section;
 import cz.sd2.cpdn.api.connector.utils.Connection;
 
 public class DemoImporterLauncher {
-	public static final String CLIENT_ID = "xxx";
-	public static final String USER_NAME = "xxx";
-	public static final String USER_PASSWORD = "xxx";
-	public static final int JAVA_IMPORTER_PROFILE = 1;
+	public static final String CLIENT_ID = "javaImporterV1";
+	public static final String USER_NAME = "javaimporter";
+	public static final String USER_PASSWORD = "XhQ912Ts776A";
+	public static final int JAVA_IMPORTER_PROFILE = 2;
 
 	public static void main(String[] args) {
 		try {
@@ -54,14 +54,14 @@ public class DemoImporterLauncher {
 			
 			// create new nodes (power node + consumption node)
 			Map<String, Double> calc1 = Node.buildCalcMap(.0, .0, .0, .0, .0, .0);
-			Map<String, Object> spec1 = Node.buildSpecMap(Node.TYPE_POWER, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
+			Map<String, Object> spec1 = Node.buildSpecMap(Node.TYPE_POWER, "label", .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
 			Node node1 = new Node(null, calc1, spec1, scheme.getId(), point1.getId());
 			JSONObject createNode1 = new JSONObject(EntityUtils.toString(Node.create(node1).getEntity()));
 			node1.setId((createNode1.isNull("id") == false) ? createNode1.getInt("id") : null);
 			System.out.println(node1);
 			
 			Map<String, Double> calc2 = Node.buildCalcMap(.0, .0, .0, .0, .0, .0);
-			Map<String, Object> spec2 = Node.buildSpecMap(Node.TYPE_CONSUMPTION, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
+			Map<String, Object> spec2 = Node.buildSpecMap(Node.TYPE_CONSUMPTION, "label", .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
 			Node node2 = new Node(null, calc2, spec2, scheme.getId(), point2.getId());
 			JSONObject createNode2 = new JSONObject(EntityUtils.toString(Node.create(node2).getEntity()));
 			node2.setId((createNode2.isNull("id") == false) ? createNode2.getInt("id") : null);
@@ -69,7 +69,7 @@ public class DemoImporterLauncher {
 			
 			// create new sections (line section between power and consumption node)
 			Map<String, Double> calc = Section.buildCalcMap(.0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
-			Map<String, Object> spec = Section.buildSpecMap(Section.TYPE_LINE, .0, Section.STATUS_UNDEFINED, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
+			Map<String, Object> spec = Section.buildSpecMap(Section.TYPE_LINE, "label", .0, Section.STATUS_UNDEFINED, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
 			Map<String, Integer> nodes = Section.buildNodesMap(point1.getId(), point2.getId(), null);
 			Section section1 = new Section(null, scheme.getId(), calc, nodes, spec);
 			JSONObject createSection1 = new JSONObject(EntityUtils.toString(Section.create(section1).getEntity()));

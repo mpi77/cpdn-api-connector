@@ -122,6 +122,7 @@ public class Node {
 	public JSONObject getJsonSpecBody() throws NullPointerException {
 		JSONObject spec = new JSONObject();
 		spec.put("type", this.spec.get("type"));
+		spec.put("label", (this.spec.get("label") != null) ? this.spec.get("label") : JSONObject.NULL);
 		spec.put("cosFi", (this.spec.get("cosFi") != null) ? this.spec.get("cosFi") : JSONObject.NULL);
 		spec.put("mi", (this.spec.get("mi") != null) ? this.spec.get("mi") : JSONObject.NULL);
 		spec.put("lambda", (new JSONObject())
@@ -217,6 +218,7 @@ public class Node {
 				(calcVoltage.isNull("value") == false) ? calcVoltage.getDouble("value") : null);
 		Map<String, Object> spec = Node.buildSpecMap(
 				specJs.getString("type"),
+				(specJs.isNull("label") == false) ? specJs.getString("label") : null, 
 				(specJs.isNull("cosFi") == false) ? specJs.getDouble("cosFi") : null, 
 				(specJs.isNull("mi") == false) ? specJs.getDouble("mi") : null, 
 				(specLambda.isNull("max") == false) ? specLambda.getDouble("max") : null, 
@@ -255,7 +257,7 @@ public class Node {
 		return calc;
 	}
 	
-	public static Map<String, Object> buildSpecMap(String type, Double cosFi, Double mi, Double lambdaMax, Double lambdaMin,
+	public static Map<String, Object> buildSpecMap(String type, String label, Double cosFi, Double mi, Double lambdaMax, Double lambdaMin,
 			Double powerActive, Double powerInstalled, Double powerRated, Double powerReactive, 
 			Double reactanceLongitudinal, Double reactanceTransverse, Double voltageLevel, Double voltagePhase,
 			Double voltageRated, Double voltageValue) throws IllegalArgumentException{
@@ -264,6 +266,7 @@ public class Node {
 		}
 		Map<String, Object> spec = new HashMap<String, Object>();
 		spec.put("type", type);
+		spec.put("label", label);
 		spec.put("cosFi", cosFi);
 		spec.put("mi", mi);
 		spec.put("lambda.max", lambdaMax);
@@ -309,7 +312,7 @@ public class Node {
 			System.out.println(Node.buildNode(EntityUtils.toString(Node.get(1).getEntity())).toString());
 
 			Map<String, Double> calc = Node.buildCalcMap(.0, null, .0, .0, .0, .0);
-			Map<String, Object> spec = Node.buildSpecMap(Node.TYPE_POWER, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
+			Map<String, Object> spec = Node.buildSpecMap(Node.TYPE_POWER, "label", .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0, .0);
 			Node node = new Node(1, calc, spec, 1, 1);
 			
 			// create a new node
