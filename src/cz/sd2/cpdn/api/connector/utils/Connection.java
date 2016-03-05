@@ -46,7 +46,7 @@ public class Connection {
 	public static void authenticate(String clientId, String username, String password) throws IOException,
 			NoSuchAlgorithmException, KeyStoreException, KeyManagementException, AuthenticationException {
 		CloseableHttpClient client = Connection.getHttpClient();
-		HttpPost post = new HttpPost(Connection.IDP_GW_URL + "token.php");
+		HttpPost post = new HttpPost(Connection.IDP_GW_URL + "token");
 		post.addHeader("Accept", "application/json");
 
 		StringEntity se = new StringEntity(
